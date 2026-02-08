@@ -1,0 +1,21 @@
+import os
+
+REDIRECT_URL = "https://amantvs-new.blogspot.com/2026/02/abc.html"
+
+for root, dirs, files in os.walk("video"):
+    if root == "video":
+        continue
+    index_path = os.path.join(root, "index.html")
+    if not os.path.exists(index_path):
+        with open(index_path, "w", encoding="utf-8") as f:
+            f.write(f"""<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="refresh" content="0; url={REDIRECT_URL}">
+</head>
+<body>
+<script>
+location.replace("{REDIRECT_URL}");
+</script>
+</body>
+</html>""")
